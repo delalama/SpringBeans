@@ -1,0 +1,47 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<body>
+
+<li  style="font-size:2em;"><a href="http://localhost:8080/app/appContextAnalysis?packageName=ALL">ALL</a></li>
+<li  style="font-size:2em;"><a href="http://localhost:8080/app/appContextAnalysis?packageName=DOMAIN">DOMAIN</a></li>
+<li  style="font-size:2em;"><a href="http://localhost:8080/app/appContextAnalysis?packageName=SERVICE">SERVICE</a></li>
+<li  style="font-size:2em;"><a href="http://localhost:8080/app/appContextAnalysis?packageName=CONTROLLER">CONTROLLER</a></li>
+
+<style>
+    table,
+    th,
+    td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+    td {
+        padding: 5px;
+        text-align: center;
+    }
+</style>
+
+<div class="justify-content-center">
+    <div class="col-auto">
+        <table class="table table-responsive text-center">
+            <thead>
+            <tr>
+                <th> BEAN NAME</th>
+                <th> PACKAGE</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="beans : ${beans}">
+                <td th:text="${beans.getKey}"></td>
+                <td th:text="${beans.getValue}"></td>
+            </tr>
+
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+</body>
+</html>

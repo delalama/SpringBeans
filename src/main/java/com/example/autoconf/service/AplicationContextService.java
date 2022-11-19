@@ -5,9 +5,8 @@ import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Predicate;
 
 @Service
 public class AplicationContextService {
@@ -15,25 +14,52 @@ public class AplicationContextService {
 
     public AplicationContextService(ApplicationContext ac)
             throws BeansException {
-        this.context = ac;
+        context = ac;
     }
 
     public Map<String, String> getBeans(String beansPackage) {
-        BEANSPACKAGE beanspackageEnum = BEANSPACKAGE.valueOf(beansPackage);
+        List<String> beanDefinitionNames = Arrays.asList(context.getBeanDefinitionNames());
 
-        switch (beanspackageEnum) {
-            case ALL:
-            case CONTROLLER:
-            case SERVICE:
+        Map<String, String> beansMap = new TreeMap<>();
+
+
+        String packageFilter;
+        if (beansPackage == null) {
+            return null;
+        } else {
+            packageFilter = getPackageName(beansPackage);
         }
 
-        List<String> beanDefinitionNames = List.of(context.getBeanDefinitionNames());
-
-        Map<String, String> beansMap = new HashMap<>();
-
-        beanDefinitionNames.stream()
-                .forEach(st -> beansMap.put(st, context.getBean(st).toString()));
+        beanDefinitionNames
+                .forEach(st -> {
+                    boolean beanIsOnDesiredPackage = context.getBean(st).getClass().toString().contains(packageFilter);
+                    if(beanIsOnDesiredPackage){
+                        beansMap.put(st, context.getBean(st).getClass().toString());
+                    }
+                });
 
         return beansMap;
     }
+
+    private String getPackageName(String beansPackage) {
+        BEANSPACKAGE beanspackageEnum = BEANSPACKAGE.valueOf(beansPackage);
+
+        String filter = "";
+        switch (beanspackageEnum) {
+            case ALL:
+                break ;
+            case DOMAIN:
+                filter = "com.example.autoconf";
+                break ;
+            case CONTROLLER:
+                filter = "com.example.autoconf.controller";
+                break ;
+            case SERVICE:
+                filter = "com.example.autoconf.service";
+                break ;
+        }
+
+        return filter;
+    }
+
 }
