@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import java.util.Map;
 
 @Controller
@@ -19,10 +18,6 @@ import java.util.Map;
 public class FooController {
     @Autowired
     private AplicationContextService aplicationContextService;
-
-//beans/all -> all beans from context
-//beans/controller -> all beans from domain/controller
-//beans/service -> all beans from domain/service
 
     @GetMapping(value = "/beans" ,produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
@@ -35,5 +30,18 @@ public class FooController {
     public String appContextAnalysis(@RequestParam(required = false) String packageName, Model model) {
         model.addAttribute("beans",aplicationContextService.getBeans(packageName));
         return "appContextAnalysis";
+    }
+
+
+    @GetMapping("/appContextAnalysis/destroyBean")
+    public void destroyBean(@RequestParam String beanId) {
+        aplicationContextService.destroyBeans(beanId);
+        System.out.println("Bean " + beanId + " borrada.");
+    }
+
+    @GetMapping("/appContextAnalysis/createBean")
+    public void createBean(@RequestParam String beanId) {
+        aplicationContextService.createBean(beanId);
+        System.out.println("Bean " + beanId + " borrada.");
     }
 }
