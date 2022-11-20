@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.stereotype.Component;
 
-//@Conditional(Java8Condition.class)
+@Conditional(Java8Condition.class)
 //@Conditional(Java17Condition.class)
 //@Conditional(NotJava17.class)
 @Component
