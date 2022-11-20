@@ -14,8 +14,7 @@ import org.springframework.context.annotation.Profile;
 @ComponentScan(
         excludeFilters = {@ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, value = FooController2.class)
         })
-@ComponentScan(excludeFilters = @ComponentScan.Filter(
-        type = FilterType.CUSTOM, classes = { PackageExcluder.class }))
+//@ComponentScan(excludeFilters = @ComponentScan.Filter(type = FilterType.CUSTOM, classes = { PackageExcluder.class }))
 public class AutoConfApplication {
 
     public static void main(String[] args) {
