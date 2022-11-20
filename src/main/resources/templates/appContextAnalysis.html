@@ -54,16 +54,27 @@
 
         <h3>Una vez finalizado el proceso nuestro IDE es capaz de: </h3>
         <ol>
-            <li>entender las relaciones entre todas las clases y métodos declarados en el código.</li>
-            <li>conocer todas las herramientas que le proporcionan las librerías importadas</li>
+            <li>entender las relaciones entre todas las clases declaradas en el código.</li>
+            <li>gestionar las clases proporcionadas por las librerías declaradas en importadas</li>
         </ol>
 
     </div>
 
-    <h3>Hasta este punto Spring no ha estado presente. </h3>
+    <h3>Hasta este punto Spring no ha estado presente.</h3>
 
     <hr>
+    <h2>Una vez tenemos el proyecto compilado podemos modificar código o ejecutar el proyecto,
+    aquí veremos actuar Spring.</h2>
+    <ol>
+        <li>Desarrollo: para que Spring pueda hacer su magia debemos programar con sus reglas.</li>
+        <li>Ejecución: Este es el motivo de este repo.</li>
+    </ol>
 
+    <hr>
+    <h1>Ejecución de un proyecto Spring</h1>
+    <hr>
+    <h2>En la ejecución de un proyecto Spring sucenden muchas cosas que deseamos entender, pero una es la que
+    desencadena el comportamiento de todo.</h2>
     <h2>El director de la orquesta: La anotación @SpringBootApplication</h2>
     <img th:src="@{/springBootAnnotation.png}"/>
 
@@ -79,7 +90,7 @@
     </ol>
 
     <hr>
-
+    <h2>Para simplificar vamos a asumir que Spring escanea unos directorios y declara unos beans en un xml </h2>
     <h2>A continuación tienes una lista de todos los beans que alberga nuestro application context</h2>
     <h2>Una vez pulses sobre un filtro la lista se rellenará</h2>
 
