@@ -28,7 +28,11 @@ public class FooController {
 
     @GetMapping("/appContextAnalysis")
     public String appContextAnalysis(@RequestParam(required = false) String packageName, Model model) {
-        model.addAttribute("beans",aplicationContextService.getBeans(packageName));
+        Map<String, String> beans = aplicationContextService.getBeans(packageName);
+        model.addAttribute("beans", beans);
+        if(beans!=null){
+            model.addAttribute("beansLength", beans.size());
+        }
         return "appContextAnalysis";
     }
 

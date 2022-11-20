@@ -1,12 +1,10 @@
 package com.example.autoconf;
 
-import com.example.autoconf.conf.PackageExcluder;
 import com.example.autoconf.controller.FooController2;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.FilterType;
-import org.springframework.context.annotation.Profile;
 
 
 //Habilitar para hacer override sobre el componentScan AutoConfigurado
