@@ -333,7 +333,7 @@
             <ol>
                 <li>Crea un bean del tipo que borraste.</li>
                 <li>Filtra por "MODEL".</li>
-                <li>Aparecerá ese bean.</li>
+                <li>Aparecerá ese bean, pero con otro id.</li>
 
                 <hr>
 
@@ -344,9 +344,14 @@
                     DefaultListableBeanFactory.java extiende de SingletonBeanRegistry y es el usado por defecto para crear los beans
                     antes de desplegar la aplicación.
 
-                    Una vez la aplicación está en runtime estoy usando GenericWebApplicationContext para poder registrar beans.
+                    Una vez la aplicación está en runtime estoy usando GenericWebApplicationContext para registrar beans.
                     GenericWebApplicationContext implementa BeanDefinitionRegistry, el cual extiende de AliasRegistry, y la asignación de id
                     es otorgar el package del class pertinente si no se le pasa ningún otro.
+
+                    Tal vez aquí venga a cuento aquí observar que los beans están almacenados en un LinkedHashMap para no poder almacenar
+                    id's duplicados.
+
+                    Si a un LinkedHashMap le pedimos que guarde 2 objetos con mismo id, el segundo simplemente no se guarda.
 
                 </pre>
             </ol>
@@ -358,7 +363,6 @@
             <h4>Vuelve a lanzar la aplicación , filtra por MODEL y observa que tenemos un bean con id "com.example.autoconf.model.Guillermito".</h4>
             <h4>Este id no ha sido generado por Spring sino que es custom, debido a ello ahora puedes crear
             un nuevo Guillermito sin borrar el previo.</h4>
-            <h4>El id que Spring asigna por defecto es el package de la class que instancia.</h4>
 
             <hr>
             <h2>Exclusiones</h2>
