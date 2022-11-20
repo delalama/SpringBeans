@@ -13,12 +13,11 @@ import org.springframework.stereotype.Component;
 @Conditional(Java8Condition.class)
 //@Conditional(Java17Condition.class)
 //@Conditional(NotJava17.class)
+@Conditional(RandomCondition.class)
 @Component
 public class ApplicationConfiguration implements ApplicationContextAware {
     @Bean
-    public Guillermito getMyGuillermitoBean() {
-        return new Guillermito();
-    }
+    public Guillermito getMyGuillermitoBean() {return new Guillermito();}
     @Bean
     public Raulito getMyRaulitoBean() {
         return new Raulito();

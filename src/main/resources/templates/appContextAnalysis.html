@@ -87,12 +87,16 @@
 
     <div class="row justify-content-center margin">
         <div class="col-auto">
+            <h1>BEANS:</h1>
+            <h1 th:text="${beansLength}">  </h1>
+
             <table class="table text-responsive">
                 <thead>
                 <tr>
                     <th> BEAN NAME</th>
                     <th> PACKAGE</th>
                 </tr>
+
                 </thead>
                 <tbody>
                 <tr th:each="beans : ${beans}">
@@ -185,8 +189,9 @@
         <h2>Ejercicio 1</h2>
         <ol>
             <li>Filtra por "MODEL"</li>
-            <li>Cárgate cualquier bean aprieta en MODEL</li>
-            <li>Filtra por "MODEL", ese bean habrá desaparecido</li>
+            <li>Borra cualquier bean </li>
+            <li>Filtra por MODEL</li>
+            <li>Ese bean habrá desaparecido</li>
         </ol>
 
         <h2>Ejercicio 2</h2>
