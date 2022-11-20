@@ -1,4 +1,8 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
@@ -322,9 +326,18 @@
                 <li>Crea un bean del tipo que borraste.</li>
                 <li>Filtra por "MODEL".</li>
                 <li>Aparecerá ese bean.</li>
-                <pre>*Pregunta: cuando lanzamos la aplicación el bean de "Whatever.class"
+                <pre>* Pregunta lógica: cuando lanzamos la aplicación el bean de "Whatever.class"
                     se registra con el id "whatever".
                     Por qué cuando creo un bean en runtime el id es el nombre del package?
+
+                    Respuesta:
+                    DefaultListableBeanFactory.java extiende de SingletonBeanRegistry y es el usado por defecto para crear los beans
+                    antes de desplegar la aplicación.
+
+                    Una vez la aplicación está en runtime estoy usando GenericWebApplicationContext para poder registrar beans.
+                    GenericWebApplicationContext implementa BeanDefinitionRegistry, el cual extiende de AliasRegistry, y la asignación de id
+                    es otorgar el package del class pertinente si no se le pasa ningún otro.
+
                 </pre>
             </ol>
 
