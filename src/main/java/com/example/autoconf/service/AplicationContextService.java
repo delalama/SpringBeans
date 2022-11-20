@@ -2,6 +2,7 @@ package com.example.autoconf.service;
 
 import com.example.autoconf.model.Guillermito;
 import com.example.autoconf.model.Jesusito;
+import com.example.autoconf.model.Person;
 import com.example.autoconf.model.Raulito;
 import com.example.autoconf.utils.BEANSPACKAGE;
 import org.springframework.beans.BeansException;
@@ -80,9 +81,9 @@ public class AplicationContextService {
 
     public void createBean(String beanId) {
         switch (beanId) {
-            case "guillermito" -> context.registerBean(Guillermito.class, () -> new Guillermito());
-            case "raulito" -> context.registerBean(Raulito.class, () -> new Raulito());
-            case "jesusito" -> context.registerBean(Jesusito.class, () -> new Jesusito());
+            case "guillermito" -> context.registerBean(Person.class, () -> new Guillermito());
+            case "raulito" -> context.registerBean(Person.class, () -> new Raulito());
+            case "jesusito" -> context.registerBean(Person.class, () -> new Jesusito());
         }
     }
 

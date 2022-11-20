@@ -109,9 +109,11 @@
     <hr>
     <h1>Ejecución de un proyecto Spring</h1>
     <hr>
-    <h3>En la ejecución de un proyecto Spring suceden muchas cosas que deseamos entender, pero una es la que
-        desencadena el comportamiento de toda la magia.</h3>
-    <h3>El director de la orquesta: La anotación <mark>@SpringBootApplication</mark></h3>
+    <h3>En la ejecución de un proyecto Spring suceden muchas cosas que deseamos entender, pero una de ellas es la que
+        desencadena toda la magia.</h3>
+    <h3>El director de la orquesta: La anotación
+        <mark>@SpringBootApplication</mark>
+    </h3>
     <img th:src="@{/springBootAnnotation.png}"/>
 
     <h3>De las anotaciones declaradas nos interesan las 3 últimas</h3>
@@ -152,7 +154,14 @@
             <ol>
                 <li>Es otro objecto de Java, con la capacidad de gestionar beans.</li>
                 <li>Los beans son almacenados en un LinkedHashMap, cuyo key es el id -> BookRepository.class - default
-                    id "bookRepository"
+                    id "bookRepository".
+                    Este comportamiento es fácilmente manipulable.
+                    <hr>
+                    <img th:src="@{/guillermito.png}"/>
+                    <hr>
+                    <img th:src="@{/guillermitoWihout.png}"/>
+                    <hr>
+
                 </li>
             </ol>
         </div>
@@ -194,7 +203,8 @@
                 <tr>
                     <td><a style="font-size:2em;"
                            href="http://localhost:8080/app/appContextAnalysis?packageName=ALL">ALL</a></td>
-                    <td><a style="font-size:2em;" href="http://localhost:8080/app/appContextAnalysis?packageName=DOMAI">DOMAIN</a>
+                    <td><a style="font-size:2em;"
+                           href="http://localhost:8080/app/appContextAnalysis?packageName=DOMAIN">DOMAIN</a>
                     </td>
                 </tr>
                 <tr>
@@ -261,10 +271,30 @@
                                 </button>
                             </td>
                         </tr>
+
+                        <tr>
+
+                            <td>
+                                <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'person')">
+                                    borrar bean person
+                                </button>
+                            </td>
+                            <td>
+                                <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'person')">
+                                    CREAR BEAN person
+                                </button>
+                            </td>
+                        </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
+
+            <pre>Pregunta para aclarar:
+                Por qué puedo registrar un bean "Jesusito.class" después de eliminar del context la clase
+                de la cual extiende (Person.class).
+            Creo que simplemente Spring resuelve ese problema registrando un bean "Person", sí ?</pre>
+
 
             <h2>Ejercicio 1</h2>
             <ol>
