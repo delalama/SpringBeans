@@ -2,6 +2,15 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
+    body {
+        color: #000;
+        background-color: #fff;
+        font-family: 'Raleway', sans-serif;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 1.42857143;
+    }
+
     table,
     th,
     td {
@@ -31,13 +40,40 @@
     .contenedor {
         margin: 40px 40px 40px 40px;
     }
+
+    .buttonContainer {
+        height: 200px;
+        position: relative;
+    }
+
+    .vertical-center {
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }
 </style>
 
 <body>
 
 <div class="contenedor">
-    <button onclick="goToTable()">Go to table</button>
-    <h1 style="color: lightblue">Aplicaciones Spring</h1>
+    <div class="buttonContainer">
+        <div class="vertical-center">
+            <button style="font-size: 6em;" onclick="goToTable()">Go to table</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Aplicaciones Spring</h1>
+            <p>Pequeña explicación para entender bases de Spring.</p>
+        </div>
+    </div>
+
 
     <h3>Para no mezclar el rol de Spring prefiero aclarar el rol que cumplen gradle o maven. </h3>
 
@@ -60,7 +96,7 @@
 
     </div>
 
-    <h3>Hasta este punto Spring no ha estado presente.</h3>
+    <h3><i>Hasta este punto Spring no ha estado presente.</i></h3>
 
     <hr>
     <h2>Una vez tenemos el proyecto compilado podemos desarrollar código o ejecutar el proyecto,
@@ -73,9 +109,9 @@
     <hr>
     <h1>Ejecución de un proyecto Spring</h1>
     <hr>
-    <h2>En la ejecución de un proyecto Spring suceden muchas cosas que deseamos entender, pero una es la que
-        desencadena el comportamiento de toda la magia.</h2>
-    <h2>El director de la orquesta: La anotación @SpringBootApplication</h2>
+    <h3>En la ejecución de un proyecto Spring suceden muchas cosas que deseamos entender, pero una es la que
+        desencadena el comportamiento de toda la magia.</h3>
+    <h3>El director de la orquesta: La anotación <mark>@SpringBootApplication</mark></h3>
     <img th:src="@{/springBootAnnotation.png}"/>
 
     <h3>De las anotaciones declaradas nos interesan las 3 últimas</h3>
@@ -115,7 +151,9 @@
             <h2>El aplicationContext</h2>
             <ol>
                 <li>Es otro objecto de Java, con la capacidad de gestionar beans.</li>
-                <li>Los beans son almacenados en un LinkedHashMap, cuyo key es el id -> BookRepository.class - default id "bookRepository"</li>
+                <li>Los beans son almacenados en un LinkedHashMap, cuyo key es el id -> BookRepository.class - default
+                    id "bookRepository"
+                </li>
             </ol>
         </div>
 
