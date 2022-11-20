@@ -144,8 +144,8 @@
         <div style="background-color: #EBEBEB;">
             <h2>Bean</h2>
             <ol>
-                <li>Es un java Object.</li>
-                <li>Se gestiona como Object porque es la clase más abstracta y liviana que Java puede gestionar.</li>
+                <li>Es un java Object proporcionado por Spring.</li>
+                <li>Se usa Object porque es la clase más abstracta y liviana que Java puede gestionar.</li>
                 <li>Un bean "BookRepository" dispone de todos los atributos de BookRepository.class</li>
             </ol>
         </div>
@@ -156,10 +156,18 @@
         <div style="background-color: #EBEBEB;">
             <h2>El aplicationContext</h2>
             <ol>
-                <li>Es otro objecto de Java, con la capacidad de gestionar beans.</li>
-                <li>Los beans son almacenados en un LinkedHashMap, cuyo key es el id -> BookRepository.class - default
-                    id "bookRepository".
-                    Este comportamiento es fácilmente manipulable.
+                <li>Es otro objecto de Java proporcionado por Spring, con la capacidad de gestionar beans.</li>
+                <li>Los beans son almacenados en un LinkedHashMap, cuyo key es el id, y cuyo value es un objecto
+                    que contiene todos los atributos.
+
+                    <hr>
+
+                    Ejemplo:
+
+                    <hr>
+
+                    <img th:src="@{/personBean.png}"/>
+
                     <hr>
                     <img th:src="@{/guillermito.png}"/>
                     <hr>
@@ -304,8 +312,8 @@
                 de la cual extiende (Person.class) ?
 
                 La tarea es crear un bean de "Jesusito.class", lo único que el aplicationContext necesita para ello
-                es analizar los atributos necesarios de "Jesusito.class", entiendo que esta tarea nunca se hace
-                a través del bean del que hereda sino del class, ya que el bean podría haber cambiado.
+                es analizar los atributos necesarios de "Jesusito.class", por lo que la existincia o no existencia
+                del bean del padre es irrelevante.
 
             </pre>
 
@@ -326,8 +334,10 @@
                 <li>Crea un bean del tipo que borraste.</li>
                 <li>Filtra por "MODEL".</li>
                 <li>Aparecerá ese bean.</li>
-                <pre>* Pregunta lógica: cuando lanzamos la aplicación el bean de "Whatever.class"
-                    se registra con el id "whatever".
+
+                <hr>
+
+                <pre>* Pregunta lógica: cuando lanzamos la aplicación el bean de "Whatever.class" se registra con el id "whatever".
                     Por qué cuando creo un bean en runtime el id es el nombre del package?
 
                     Respuesta:
