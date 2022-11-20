@@ -368,40 +368,31 @@
             <h2>Exclusiones</h2>
 
             <h3>Del mismo modo que podemos añadir/quitar beans en runtime tb podemos añadir anotaciones condicionales
-                que modificarán nuestro application Context.</h3>
+                que modificarán nuestro application Context durante el despliegue.</h3>
 
-            <h3>Ejercicio 3</h3>
+            <h2>Ejercicio 3</h2>
 
             <ol>
                 <li>Ir a la clase ApplicationConfiguration</li>
                 <li>Descomentar algún condicional</li>
                 <li>Lanzar</li>
+                <li>Cuando el condicional se cumpla veremos nuevos beans en MODEL</li>
             </ol>
-            <h2>Este condicional es intuitivo, si se cumple se creará el bean y los beans que contiene la clase.</h2>
-            <h2>Si el condicional se cumple podrás ver los beans filtrando por MODEL</h2>
+            <h3>Este condicional es intuitivo, si se cumple se creará el bean y los beans que contiene la clase.</h3>
+            <h3>Si el condicional se cumple podrás ver nuevos beans filtrando por MODEL y applicationConfiguration filtrando por CONF</h3>
 
-            <h3>Ejercicio 4</h3>
+            <h2>Ejercicio 4</h2>
 
             <ol>
-                <li>Filtra por CONTROLLER</li>
-                <li>Ir a la clase AutoConfApplication</li>
-                <li>Descomentar linea 14</li>
-                <li>Lanzar</li>
-                <li>Filtra por CONTROLLER</li>
+                <li>Cambiar el perfil "local" a "dev" en application.properties</li>
+                <li>Lanzar aplicación</li>
+                <li>Filtra por ALL y busca devProfile</li>
             </ol>
 
             <hr>
 
+            <h2>Ejercicio 5</h2>
             <h2> Excluir packages vía profile</h2>
-
-            <ol>
-                <li>Descomentar linea 17 de la clase AutoConfApplication</li>
-                <li>Cambiar el profile a dev (buscar spring.profiles.active y cambiar)</li>
-                <li>Ejecutar aplicación</li>
-                <li>Visualizar todos los beans del aplicationContext (botón ALL)</li>
-                <li>Encontrarás el bean devProfile</li>
-
-            </ol>
 
 
         </div>
