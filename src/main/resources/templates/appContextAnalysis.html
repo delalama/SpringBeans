@@ -63,8 +63,8 @@
     <h3>Hasta este punto Spring no ha estado presente.</h3>
 
     <hr>
-    <h2>Una vez tenemos el proyecto compilado podemos modificar código o ejecutar el proyecto,
-    aquí veremos actuar Spring.</h2>
+    <h2>Una vez tenemos el proyecto compilado podemos desarrollar código o ejecutar el proyecto,
+        aquí veremos actuar Spring.</h2>
     <ol>
         <li>Desarrollo: para que Spring pueda hacer su magia debemos programar con sus reglas.</li>
         <li>Ejecución: Este es el motivo de este repo.</li>
@@ -73,8 +73,8 @@
     <hr>
     <h1>Ejecución de un proyecto Spring</h1>
     <hr>
-    <h2>En la ejecución de un proyecto Spring sucenden muchas cosas que deseamos entender, pero una es la que
-    desencadena el comportamiento de todo.</h2>
+    <h2>En la ejecución de un proyecto Spring suceden muchas cosas que deseamos entender, pero una es la que
+        desencadena el comportamiento de toda la magia.</h2>
     <h2>El director de la orquesta: La anotación @SpringBootApplication</h2>
     <img th:src="@{/springBootAnnotation.png}"/>
 
@@ -90,175 +90,204 @@
     </ol>
 
     <hr>
-    <h2>Para simplificar vamos a asumir que Spring escanea unos directorios y declara unos beans en un xml </h2>
-    <h2>A continuación tienes una lista de todos los beans que alberga nuestro application context</h2>
-    <h2>Una vez pulses sobre un filtro la lista se rellenará</h2>
+    <h2>Para simplificar vamos a asumir que Spring:
+        <ol>
+            <li>Escanea unos directorios.</li>
+            <li>Crea un aplicationContext que gestiona beans.</li>
+        </ol>
+        <hr>
+        <h2>Poco a poco, qué es un bean?</h2>
 
-    <hr id="tableId">
-
-    <div class="row justify-content-center margin">
-        <div class="col-auto">
-            <h1>BEANS:</h1>
-            <h1 th:text="${beansLength}">  </h1>
-
-            <table class="table text-responsive">
-                <thead>
-                <tr>
-                    <th> BEAN NAME</th>
-                    <th> PACKAGE</th>
-                </tr>
-
-                </thead>
-                <tbody>
-                <tr th:each="beans : ${beans}">
-                    <td th:text="${beans.getKey}"></td>
-                    <td th:text="${beans.getValue}"></td>
-                </tr>
-                </tbody>
-            </table>
+        <hr>
+        <div style="background-color: #EBEBEB;">
+            <h2>Bean</h2>
+            <ol>
+                <li>Es un java Object.</li>
+                <li>Se gestiona como Object porque es la clase más abstracta y liviana que Java puede gestionar.</li>
+                <li>Un bean "BookRepository" dispone de todos los atributos de BookRepository.class</li>
+            </ol>
         </div>
-    </div>
-    <!--    botones-->
-    <div class="row">
-        <h1 style="font-size:3em;">FILTROS</h1>
+        <hr>
+        Los beans son gestionados por el aplicationContext.
 
-        <table class="table text-responsive">
-            <tbody>
-            <tr>
-                <td><a style="font-size:2em;"
-                       href="http://localhost:8080/app/appContextAnalysis?packageName=ALL">ALL</a></td>
-                <td><a style="font-size:2em;" href="http://localhost:8080/app/appContextAnalysis?packageName=DOMAI">DOMAIN</a>
-                </td>
-            </tr>
-            <tr>
-                <td><a style="font-size:2em;" href="http://localhost:8080/app/appContextAnalysis?packageName=SERVICE">SERVICE</a>
-                </td>
-                <td><a style="font-size:2em;"
-                       href="http://localhost:8080/app/appContextAnalysis?packageName=CONTROLLER">CONTROLLER</a></td>
-            </tr>
+        <div style="background-color: #EBEBEB;">
+            <h2>El aplicationContext</h2>
+            <ol>
+                <li>Es otro objecto de Java, con la capacidad de gestionar beans.</li>
+                <li>Los beans son almacenados en un LinkedHashMap, cuyo key es el id -> BookRepository.class - default id "BookRepository"</li>
+            </ol>
+        </div>
 
-            <tr>
-                <td><a style="font-size:2em;"
-                       href="http://localhost:8080/app/appContextAnalysis?packageName=CONF">CONF</a></td>
-                <td><a style="font-size:2em;" href="http://localhost:8080/app/appContextAnalysis?packageName=MODEL">MODEL</a>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+
+        <h2>A continuación tienes una lista de todos los beans que alberga nuestro application context</h2>
+        <h2>Una vez pulses sobre un filtro la lista se rellenará</h2>
+
+        <hr id="tableId">
 
         <div class="row justify-content-center margin">
             <div class="col-auto">
+                <h1>BEANS:</h1>
+                <h1 th:text="${beansLength}"></h1>
+
                 <table class="table text-responsive">
                     <thead>
                     <tr>
                         <th> BEAN NAME</th>
                         <th> PACKAGE</th>
                     </tr>
+
                     </thead>
                     <tbody>
-                    <tr>
-                        <td>
-                            <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'guillermito')">
-                                borrar bean guillermito
-                            </button>
-                        </td>
-                        <td>
-                            <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'guillermito')">
-                                CREAR BEAN guillermito
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'raulito')">
-                                borrar bean raulito
-                            </button>
-                        </td>
-                        <td>
-                            <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'raulito')">
-                                CREAR BEAN raulito
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'jesusito')">
-                                borrar bean jesusito
-                            </button>
-                        </td>
-                        <td>
-                            <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'jesusito')">
-                                CREAR BEAN jesusito
-                            </button>
-                        </td>
+                    <tr th:each="beans : ${beans}">
+                        <td th:text="${beans.getKey}"></td>
+                        <td th:text="${beans.getValue}"></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
+        <!--    botones-->
+        <div class="row">
+            <h1 style="font-size:3em;">FILTROS</h1>
 
-        <h2>Ejercicio 1</h2>
-        <ol>
-            <li>Filtra por "MODEL"</li>
-            <li>Borra cualquier bean </li>
-            <li>Filtra por MODEL</li>
-            <li>Ese bean habrá desaparecido</li>
-        </ol>
+            <table class="table text-responsive">
+                <tbody>
+                <tr>
+                    <td><a style="font-size:2em;"
+                           href="http://localhost:8080/app/appContextAnalysis?packageName=ALL">ALL</a></td>
+                    <td><a style="font-size:2em;" href="http://localhost:8080/app/appContextAnalysis?packageName=DOMAI">DOMAIN</a>
+                    </td>
+                </tr>
+                <tr>
+                    <td><a style="font-size:2em;"
+                           href="http://localhost:8080/app/appContextAnalysis?packageName=SERVICE">SERVICE</a>
+                    </td>
+                    <td><a style="font-size:2em;"
+                           href="http://localhost:8080/app/appContextAnalysis?packageName=CONTROLLER">CONTROLLER</a>
+                    </td>
+                </tr>
 
-        <h2>Ejercicio 2</h2>
-        <ol>
-            <li>Crea un bean</li>
-            <li>Filtra por "MODEL"</li>
-            <li>Aparecerá ese bien</li>
-        </ol>
+                <tr>
+                    <td><a style="font-size:2em;"
+                           href="http://localhost:8080/app/appContextAnalysis?packageName=CONF">CONF</a></td>
+                    <td><a style="font-size:2em;" href="http://localhost:8080/app/appContextAnalysis?packageName=MODEL">MODEL</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
 
-        <hr>
-        <h3>Observación:</h3>
-        <h4>Podemos tener 2 beans de la misma clase, para ello tenemos que asignarles un id diferente</h4>
-        <h4>El id que Spring asigna por defecto es "whateverClass" para la clase WhateverClass.class"</h4>
+            <div class="row justify-content-center margin">
+                <div class="col-auto">
+                    <table class="table text-responsive">
+                        <thead>
+                        <tr>
+                            <th> BEAN NAME</th>
+                            <th> PACKAGE</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>
+                                <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'guillermito')">
+                                    borrar bean guillermito
+                                </button>
+                            </td>
+                            <td>
+                                <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'guillermito')">
+                                    CREAR BEAN guillermito
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'raulito')">
+                                    borrar bean raulito
+                                </button>
+                            </td>
+                            <td>
+                                <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'raulito')">
+                                    CREAR BEAN raulito
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button onclick="jsCallToDelete('http://localhost:8080/app/appContextAnalysis/destroyBean?beanId=', 'jesusito')">
+                                    borrar bean jesusito
+                                </button>
+                            </td>
+                            <td>
+                                <button onclick="jsCallToCreate('http://localhost:8080/app/appContextAnalysis/createBean?beanId=', 'jesusito')">
+                                    CREAR BEAN jesusito
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-        <hr>
-        <h2>Exclusiones</h2>
+            <h2>Ejercicio 1</h2>
+            <ol>
+                <li>Filtra por "MODEL"</li>
+                <li>Borra cualquier bean</li>
+                <li>Filtra por MODEL</li>
+                <li>Ese bean habrá desaparecido</li>
+            </ol>
 
-        <h3>Del mismo modo que podemos añadir/quitar beans en runtime tb podemos añadir anotaciones condicionales
-            que modificarán nuestro application Context.</h3>
+            <h2>Ejercicio 2</h2>
+            <ol>
+                <li>Crea un bean</li>
+                <li>Filtra por "MODEL"</li>
+                <li>Aparecerá ese bien</li>
+            </ol>
 
-        <h3>Ejercicio 3</h3>
+            <hr>
+            <h3>Observación:</h3>
+            <h4>Podemos tener 2 beans de la misma clase, para ello tenemos que asignarles un id diferente</h4>
+            <h4>El id que Spring asigna por defecto es "whateverClass" para la clase WhateverClass.class"</h4>
 
-        <ol>
-            <li>Ir a la clase ApplicationConfiguration</li>
-            <li>Descomentar algún condicional</li>
-            <li>Lanzar</li>
-        </ol>
-        <h2>Este condicional es intuitivo, si se cumple se creará el bean y los beans que contiene la clase.</h2>
-        <h2>Si el condicional se cumple podrás ver los beans filtrando por MODEL</h2>
+            <hr>
+            <h2>Exclusiones</h2>
 
-        <h3>Ejercicio 4</h3>
+            <h3>Del mismo modo que podemos añadir/quitar beans en runtime tb podemos añadir anotaciones condicionales
+                que modificarán nuestro application Context.</h3>
 
-        <ol>
-            <li>Filtra por CONTROLLER</li>
-            <li>Ir a la clase AutoConfApplication</li>
-            <li>Descomentar linea 14</li>
-            <li>Lanzar</li>
-            <li>Filtra por CONTROLLER</li>
-        </ol>
+            <h3>Ejercicio 3</h3>
 
-        <hr>
+            <ol>
+                <li>Ir a la clase ApplicationConfiguration</li>
+                <li>Descomentar algún condicional</li>
+                <li>Lanzar</li>
+            </ol>
+            <h2>Este condicional es intuitivo, si se cumple se creará el bean y los beans que contiene la clase.</h2>
+            <h2>Si el condicional se cumple podrás ver los beans filtrando por MODEL</h2>
 
-        <h2> Excluir packages vía profile</h2>
+            <h3>Ejercicio 4</h3>
 
-        <ol>
-            <li>Descomentar linea 17 de la clase AutoConfApplication</li>
-            <li>Cambiar el profile a dev (buscar spring.profiles.active y cambiar)</li>
-            <li>Ejecutar aplicación</li>
-            <li>Visualizar todos los beans del aplicationContext (botón ALL)</li>
-            <li>Encontrarás el bean devProfile</li>
+            <ol>
+                <li>Filtra por CONTROLLER</li>
+                <li>Ir a la clase AutoConfApplication</li>
+                <li>Descomentar linea 14</li>
+                <li>Lanzar</li>
+                <li>Filtra por CONTROLLER</li>
+            </ol>
 
-        </ol>
+            <hr>
+
+            <h2> Excluir packages vía profile</h2>
+
+            <ol>
+                <li>Descomentar linea 17 de la clase AutoConfApplication</li>
+                <li>Cambiar el profile a dev (buscar spring.profiles.active y cambiar)</li>
+                <li>Ejecutar aplicación</li>
+                <li>Visualizar todos los beans del aplicationContext (botón ALL)</li>
+                <li>Encontrarás el bean devProfile</li>
+
+            </ol>
 
 
-
-    </div>
+        </div>
 </div>
 
 </body>
