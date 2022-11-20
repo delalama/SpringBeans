@@ -81,9 +81,9 @@ public class AplicationContextService {
 
     public void createBean(String beanId) {
         switch (beanId) {
-            case "guillermito" -> context.registerBean(Person.class, () -> new Guillermito());
-            case "raulito" -> context.registerBean(Person.class, () -> new Raulito());
-            case "jesusito" -> context.registerBean(Person.class, () -> new Jesusito());
+        case "guillermito" -> context.registerBean(Guillermito.class, () -> new Guillermito());
+            case "raulito" -> context.registerBean(Raulito.class, () -> new Raulito());
+            case "jesusito" -> context.registerBean(Jesusito.class, () -> new Jesusito());
         }
     }
 
