@@ -180,8 +180,8 @@
                 <table class="table text-responsive">
                     <thead>
                     <tr>
-                        <th> BEAN NAME</th>
-                        <th> PACKAGE</th>
+                        <th> BEAN ID</th>
+                        <th> BEAN PACKAGE</th>
                     </tr>
 
                     </thead>
@@ -300,33 +300,42 @@
                 de la cual extiende (Person.class) ?
 
                 La tarea es crear un bean de "Jesusito.class", lo único que el aplicationContext necesita para ello
-                es analizar los atributos necesarios de "Jesusito.class".
+                es analizar los atributos necesarios de "Jesusito.class", entiendo que esta tarea nunca se hace
+                a través del bean del que hereda sino del class, ya que el bean podría haber cambiado.
 
-                Curiosidad al respecto:
-                El id del
             </pre>
 
             <hr>
 
-            <h2>Ejercicio 1</h2>
+            <h2>Ejercicio 1 - borrar un bean </h2>
             <ol>
-                <li>Filtra por "MODEL"</li>
-                <li>Borra cualquier bean</li>
-                <li>Filtra por MODEL</li>
-                <li>Ese bean habrá desaparecido</li>
-            </ol>
-
-            <h2>Ejercicio 2</h2>
-            <ol>
-                <li>Crea un bean</li>
-                <li>Filtra por "MODEL"</li>
-                <li>Aparecerá ese bien</li>
+                <li>Filtra por "MODEL".</li>
+                <li>Borra un bean cualquiera.</li>
+                <li>Filtra por MODEL.</li>
+                <li>Ese bean habrá desaparecido.</li>
             </ol>
 
             <hr>
-            <h3>Observación:</h3>
-            <h4>Podemos tener 2 beans de la misma clase, para ello tenemos que asignarles un id diferente</h4>
-            <h4>El id que Spring asigna por defecto es "whateverClass" para la clase WhateverClass.class"</h4>
+
+            <h2>Ejercicio 2 - crear un bean </h2>
+            <ol>
+                <li>Crea un bean del tipo que borraste.</li>
+                <li>Filtra por "MODEL".</li>
+                <li>Aparecerá ese bean.</li>
+                <pre>*Pregunta: cuando lanzamos la aplicación el bean de "Whatever.class"
+                    se registra con el id "whatever".
+                    Por qué cuando creo un bean en runtime el id es el nombre del package?
+                </pre>
+            </ol>
+
+            <hr>
+
+            <h3>Profundizando en eso:</h3>
+            <h4>Podemos tener 2 beans de la misma clase, para ello tenemos que asignarles un id diferente.</h4>
+            <h4>Vuelve a lanzar la aplicación , filtra por MODEL y observa que tenemos un bean con id "com.example.autoconf.model.Guillermito".</h4>
+            <h4>Este id no ha sido generado por Spring sino que es custom, debido a ello ahora puedes crear
+            un nuevo Guillermito sin borrar el previo.</h4>
+            <h4>El id que Spring asigna por defecto es el package de la class que instancia.</h4>
 
             <hr>
             <h2>Exclusiones</h2>
